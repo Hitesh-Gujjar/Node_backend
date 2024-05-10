@@ -1,22 +1,27 @@
+const mongoose = require("mongoose");
 
-const mongoose = require('mongoose');
-
-const adminUserSchema = mongoose.Schema({
+const adminUserSchema = mongoose.Schema(
+  {
     company_name: {
-        types: String,
-        require: [true, 'Please enter the company name']
+      type: String,
+      required: [true, "Please enter the company name"],
     },
     company_contact: {
-        types: String,
-        require: [true, 'please enter the contact number']
+      type: String,
+      required: [true, "Please enter the contact number"],
     },
     company_email: {
-        types: String,
-        require: [true, 'Please enter the email Id']
-    }
-},
-    {
-        timestamps: true,
-    });
+      type: String,
+      required: [true, "Please enter the email ID"],
+    },
+    password: {
+      type: String,
+      required: [true, "Need to enter your password"],
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model("admin-user", adminUserSchema)
+module.exports = mongoose.model("admin-user", adminUserSchema);

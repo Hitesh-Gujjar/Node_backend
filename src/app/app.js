@@ -8,6 +8,5 @@ console.log("Hello")
 app.use(express.json());
 app.use(cors())
 app.use(apiRoutes);
-// app.get('/admin/create',(req,res)=>{return res.send("sada")})
 
 module.exports = app;

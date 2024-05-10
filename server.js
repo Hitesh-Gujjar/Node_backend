@@ -1,5 +1,3 @@
-const express = require('express');
-// const app = require('./src/route/route')
 const app=require('./src/app/app')
 const mongoConnect = require('./mongodb/mongodb')
 
