@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
+
 const password = encodeURIComponent('hitesh@0507');
 const username = encodeURIComponent('hitesh');
 const clusterAddress = 'cluster0.4npfbgv.mongodb.net';
 const databaseName = 'pocdata';
-const nodeurl = `mongodb+srv://Hitesh-Gujjar:Ethics-123@cluster0.4npfbgv.mongodb.net/test`
-
+const nodeurl = process.env.MONGOES_DB_URL
 
 const connectDb = async () => {
     try {
@@ -12,7 +14,6 @@ const connectDb = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log("Connected to MongoDB");
     } catch (err) {
         console.error("Error connecting to MongoDB:", err);
     }

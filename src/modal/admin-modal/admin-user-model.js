@@ -6,6 +6,10 @@ const adminUserSchema = mongoose.Schema(
       type: String,
       required: [true, "Please enter the company name"],
     },
+    company_uerId: {
+      type: String,
+      required: [true, "Please enter the company UserId"],
+    },
     company_contact: {
       type: String,
       required: [true, "Please enter the contact number"],
