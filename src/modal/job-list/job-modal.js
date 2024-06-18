@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
+const jobsSchema = mongoose.Schema({
     name: {
         type: String,
         require: [true, "Kindly enter the name"]
@@ -52,4 +52,4 @@ const userSchema = mongoose.Schema({
     }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("job-list", jobsSchema);

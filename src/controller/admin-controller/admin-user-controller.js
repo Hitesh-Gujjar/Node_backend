@@ -1,6 +1,7 @@
 const adminUserModel = require('../../modal/admin-modal/admin-user-model')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { responseCall } = require('../../helper/comman');
 
 const createAdminUser = async (req, res) => {
     const { company_name, company_contact, company_email, company_userId, password } = req.body;
@@ -40,17 +41,39 @@ const loginAdminUser = async (req, res) => {
 
     if (checkIsUser?.id) {
         const IsValidAuth = await bcrypt.compare(password, checkIsUser.password);
-        const token = jwt.sign(checkIsUser, secret_key, { expiresIn: '1h' });
+        const userData = {
+            name: checkIsUser.company_name,
+            email: checkIsUser.company_email,
+            id: checkIsUser.id,
+            userId: checkIsUser.company_uerId,
+            contact: checkIsUser.company_contact
+        }
 
         if (IsValidAuth) {
-            res.json({ staus: true, message: 'Login successfully', data: checkIsUser, token: token });
+            const token = jwt.sign(userData, secret_key, { expiresIn: '1h' });
+            return res.status(200).json({
+                staus: true,
+                message: 'Login successfully',
+                data: checkIsUser,
+                token: token
+            });
         } else {
-            res.send("requested is unAuthorise");
+            return res.status(200).json({
+                status: false,
+                message: 'requested is unAuthorise',
+                data: null
+            });
+
         }
     } else {
-        res.send("requested is unAuthorise");
+        return res.status(200).json({
+            status: false,
+            message: 'requested is unAuthorise',
+            data: null
+        });
+
     }
 
 }
 
-module.exports = { createAdminUser, loginAdminUser }
+module.exports = {createAdminUser,loginAdminUser};
