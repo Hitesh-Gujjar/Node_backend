@@ -11,8 +11,9 @@ const jobsSchema = mongoose.Schema({
     },
     designation: {
         type: String,
+        
         require: [true]
-    },
+    },  
     job_title: {
         type: String,
         require: [true, "Kindly enter the name"]

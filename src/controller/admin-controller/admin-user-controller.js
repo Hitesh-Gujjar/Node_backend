@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { responseCall } = require('../../helper/comman');
 
 const createAdminUser = async (req, res) => {
-    const { company_name, company_contact, company_email, company_userId, password } = req.body;
+    const { company_name, company_contact, company_email, company_uername, password } = req.body;
 
     let data = {}
     const saltRounds = 10;
@@ -14,7 +14,7 @@ const createAdminUser = async (req, res) => {
         data['company_name'] = company_name
         data['company_contact'] = company_contact
         data['company_email'] = company_email
-        data['company_uerId'] = company_userId
+        data['company_uername'] = company_uername
         data['password'] = hashedPassword
     } else {
         res.send('Need to field mendetory field')
@@ -26,10 +26,18 @@ const createAdminUser = async (req, res) => {
         const createAdminUser = await adminUserModel.create(data)
 
         if (createAdminUser) {
-            res.send("Sing-up successfully");
+            res.status(200).json({
+                status: true,
+                message: "Sing-up successfully"
+            })
+
         };
     } else {
-        res.send("deplicated value")
+        res.status(200).json({
+            status: false,
+            message: "Email is already exits"
+        })
+      
     }
 };
 
@@ -76,4 +84,4 @@ const loginAdminUser = async (req, res) => {
 
 }
 
-module.exports = {createAdminUser,loginAdminUser};
+module.exports = { createAdminUser, loginAdminUser };
