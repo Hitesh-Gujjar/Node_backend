@@ -5,7 +5,7 @@ dotenv.config()
 
 const port = 5000;
 mongoConnect();
-
+console.log("hello")
 app.listen(port,
     () => console.log("port is runing on", port)
 )
